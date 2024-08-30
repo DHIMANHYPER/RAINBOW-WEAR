@@ -1,0 +1,176 @@
+<html>
+
+<head>
+    <!-- <base href="https://example.com/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModernWear - Contemporary Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <header>
+        <h1 class="site-name">ModernWear</h1>
+        <nav>
+            <ul>
+                <li><a href="/new-arrivals">New Arrivals</a></li>
+                <li><a href="/men">Men</a></li>
+                <li><a href="/women">Women</a></li>
+                <li><a href="/accessories">Accessories</a></li>
+                <li><a href="/sale">Sale</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle">☰</button>
+    </header>
+    <main>
+        <div class="product-grid">
+            <div class="product-card" data-product-id="1">
+                <div class="product-image">
+                    <button class="share-button"><i class="fas fa-share-alt"></i></button>
+                    <button class="cart-button"><i class="fas fa-shopping-cart"></i></button>
+                    <img src="https://example.com/images/minimalist-tshirt-dark.jpg"
+                        alt="White minimalist t-shirt with subtle geometric pattern on dark background" width="300"
+                        height="300">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Minimalist Geo Tee</h2>
+                    <p class="product-price">$29.99</p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-product-id="2">
+                <div class="product-image">
+                    <button class="share-button"><i class="fas fa-share-alt"></i></button>
+                    <button class="cart-button"><i class="fas fa-shopping-cart"></i></button>
+                    <img src="https://example.com/images/slim-jeans-dark.jpg"
+                        alt="Dark blue slim fit jeans on dark background" width="300" height="300">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Urban Slim Jeans</h2>
+                    <p class="product-price">$59.99</p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-product-id="3">
+                <div class="product-image">
+                    <button class="share-button"><i class="fas fa-share-alt"></i></button>
+                    <button class="cart-button"><i class="fas fa-shopping-cart"></i></button>
+                    <img src="https://example.com/images/flowy-dress-dark.jpg"
+                        alt="Flowy summer dress with abstract print on dark background" width="300" height="300">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Abstract Breeze Dress</h2>
+                    <p class="product-price">$49.99</p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" data-product-id="4">
+                <div class="product-image">
+                    <button class="share-button"><i class="fas fa-share-alt"></i></button>
+                    <button class="cart-button"><i class="fas fa-shopping-cart"></i></button>
+                    <img src="https://example.com/images/leather-jacket-dark.jpg"
+                        alt="Sleek black leather jacket with minimalist design on dark background" width="300"
+                        height="300">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Neo Leather Jacket</h2>
+                    <p class="product-price">$129.99</p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 ModernWear. All rights reserved.</p>
+    </footer>
+    <script>
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', (event) => {
+                if (!event.target.closest('.share-button') && !event.target.closest('.cart-button') && !event.target.closest('.buy-now')) {
+                    const productId = card.getAttribute('data-product-id');
+                    window.location.href = `/product/${productId}`;
+                }
+            });
+        });
+
+        document.querySelectorAll('.buy-now').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const productName = button.parentElement.querySelector('.product-title').textContent;
+                const productPrice = button.parentElement.querySelector('.product-price').textContent;
+                alert(`Proceeding to checkout: ${productName} - ${productPrice}`);
+                button.textContent = 'Processing...';
+                button.disabled = true;
+                setTimeout(() => {
+                    button.textContent = 'Buy Now';
+                    button.disabled = false;
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.share-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const productName = button.closest('.product-card').querySelector('.product-title').textContent;
+                const shareUrl = `https://example.com/share?product=${encodeURIComponent(productName)}`;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Check out this product!',
+                        text: `I found this amazing ${productName} on ModernWear!`,
+                        url: shareUrl
+                    }).then(() => {
+                        console.log('Thanks for sharing!');
+                    }).catch(console.error);
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    prompt('Copy this link to share:', shareUrl);
+                }
+            });
+        });
+
+        document.querySelectorAll('.cart-button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const productName = button.closest('.product-card').querySelector('.product-title').textContent;
+                const productPrice = button.closest('.product-card').querySelector('.product-price').textContent;
+                alert(`Added to cart: ${productName} - ${productPrice}`);
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+                }, 2000);
+            });
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('show');
+            menuToggle.textContent = navUl.classList.contains('show') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('nav') && !event.target.closest('.menu-toggle')) {
+                navUl.classList.remove('show');
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
