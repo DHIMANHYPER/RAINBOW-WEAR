@@ -77,7 +77,7 @@
                     <h3>Quantity:</h3>
                     <input type="number" class="quantity-input" value="1" min="1" max="10">
                 </div>
-                <button class="buy-now">Buy Now</button>
+                <a href="/checkout"><button class="buy-now">Buy Now</button></a>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
@@ -137,13 +137,13 @@
         });
 
         // Buy Now button
-        const buyNowButton = document.querySelector('.buy-now');
+        // const buyNowButton = document.querySelector('.buy-now');
 
-        buyNowButton.addEventListener('click', () => {
-            const size = document.querySelector('.size-button.active').textContent;
-            const quantity = quantityInput.value;
-            alert(`Proceeding to checkout:\nProduct: Abstract Breeze Dress\nSize: ${size}\nQuantity: ${quantity}`);
-        });
+        // buyNowButton.addEventListener('click', () => {
+        //     const size = document.querySelector('.size-button.active').textContent;
+        //     const quantity = quantityInput.value;
+        //     alert(`Proceeding to checkout:\nProduct: Abstract Breeze Dress\nSize: ${size}\nQuantity: ${quantity}`);
+        // });
 
         // Add to Cart button
         const addToCartButton = document.querySelector('.add-to-cart');
