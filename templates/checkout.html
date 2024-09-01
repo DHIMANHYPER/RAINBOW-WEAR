@@ -1,251 +1,255 @@
-<html>
+<!-- <html>
 
 <head>
-    <!-- <base href="https://modernwear.com/checkout"> -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - ModernWear</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='check.css')}}">
+    
 </head>
 
 <body>
     <header>
         <h1 class="site-name">ModernWear</h1>
-    </header>
-    <main>
-        <h1>Checkout</h1>
-        <form id="checkoutForm">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="houseNumber">House Number / Building Name</label>
-                <input type="text" id="houseNumber" name="houseNumber" required>
-            </div>
-            <div class="form-group">
-                <label for="streetAddress">Street Address</label>
-                <textarea id="streetAddress" name="streetAddress" rows="2" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="landmark">Landmark</label>
-                <input type="text" id="landmark" name="landmark" required>
-            </div>
-            <div class="form-group">
-                <label for="pinCode">PIN Code</label>
-                <input type="text" id="pinCode" name="pinCode" required>
-            </div>
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" required>
-            </div>
-            <div class="form-group">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" required>
-            </div>
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="sameAsBilling" name="sameAsBilling">
-                <label for="sameAsBilling">Shipping address same as billing</label>
-            </div>
+    </header> -->
+{%extends "base.html"%}
+{%block head%}
+<title>Checkout - ModernWear</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='check.css')}}">
+{%endblock%}
+{%block content%}
+<main>
+    <h1>Checkout</h1>
+    <form id="checkoutForm">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="houseNumber">House Number / Building Name</label>
+            <input type="text" id="houseNumber" name="houseNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="streetAddress">Street Address</label>
+            <textarea id="streetAddress" name="streetAddress" rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="landmark">Landmark</label>
+            <input type="text" id="landmark" name="landmark" required>
+        </div>
+        <div class="form-group">
+            <label for="pinCode">PIN Code</label>
+            <input type="text" id="pinCode" name="pinCode" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required>
+        </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="sameAsBilling" name="sameAsBilling">
+            <label for="sameAsBilling">Shipping address same as billing</label>
+        </div>
 
-            <div class="form-group">
-                <label for="paymentMethod">Payment Method</label>
-                <select id="paymentMethod" name="paymentMethod" required>
-                    <option value="">Select a payment method</option>
-                    <option value="card">Debit/Credit Card</option>
-                    <option value="upi_app">UPI App</option>
-                    <option value="bank_transfer">Bank Transfer</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Select a payment method</option>
+                <option value="card">Debit/Credit Card</option>
+                <option value="upi_app">UPI App</option>
+                <option value="bank_transfer">Bank Transfer</option>
+            </select>
+        </div>
 
-            <div id="cardDetails" class="form-group" style="display: none;">
-                <label for="cardNumber">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="width: 48%;">
-                        <label for="expiryDate">Expiry Date</label>
-                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
-                    </div>
-                    <div style="width: 48%;">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="123">
-                    </div>
+        <div id="cardDetails" class="form-group" style="display: none;">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 48%;">
+                    <label for="expiryDate">Expiry Date</label>
+                    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                </div>
+                <div style="width: 48%;">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123">
                 </div>
             </div>
+        </div>
 
-            <div id="upiAppDetails" class="form-group" style="display: none;">
-                <label>Select UPI App</label>
-                <div id="upiAppLogos">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png"
-                        alt="UPI" title="UPI" data-app="UPI">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png"
-                        alt="Google Pay" title="Google Pay" data-app="Google Pay">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/2560px-Paytm_Logo_%28standalone%29.svg.png"
-                        alt="Paytm" title="Paytm" data-app="Paytm">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/1200px-PhonePe_Logo.svg.png"
-                        alt="PhonePe" title="PhonePe" data-app="PhonePe">
-                </div>
-                <input type="hidden" id="selectedUpiApp" name="selectedUpiApp">
+        <div id="upiAppDetails" class="form-group" style="display: none;">
+            <label>Select UPI App</label>
+            <div id="upiAppLogos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png"
+                    alt="UPI" title="UPI" data-app="UPI">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png"
+                    alt="Google Pay" title="Google Pay" data-app="Google Pay">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/2560px-Paytm_Logo_%28standalone%29.svg.png"
+                    alt="Paytm" title="Paytm" data-app="Paytm">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/1200px-PhonePe_Logo.svg.png"
+                    alt="PhonePe" title="PhonePe" data-app="PhonePe">
             </div>
+            <input type="hidden" id="selectedUpiApp" name="selectedUpiApp">
+        </div>
 
-            <div id="bankTransferDetails" class="form-group" style="display: none;">
-                <p>Bank transfer details will be provided after order confirmation.</p>
-            </div>
+        <div id="bankTransferDetails" class="form-group" style="display: none;">
+            <p>Bank transfer details will be provided after order confirmation.</p>
+        </div>
 
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="termsAndConditions" name="termsAndConditions" required>
-                <label for="termsAndConditions">I agree to the terms and conditions</label>
-            </div>
-            <button type="submit" id="placeOrderButton" disabled>Place Order</button>
-        </form>
-    </main>
-    <script>
-        const form = document.getElementById('checkoutForm');
-        const paymentMethodField = document.getElementById('paymentMethod');
-        const cardDetails = document.getElementById('cardDetails');
-        const upiAppDetails = document.getElementById('upiAppDetails');
-        const bankTransferDetails = document.getElementById('bankTransferDetails');
-        const placeOrderButton = document.getElementById('placeOrderButton');
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="termsAndConditions" name="termsAndConditions" required>
+            <label for="termsAndConditions">I agree to the terms and conditions</label>
+        </div>
+        <button type="submit" id="placeOrderButton" disabled>Place Order</button>
+    </form>
+</main>
+<script>
+    const form = document.getElementById('checkoutForm');
+    const paymentMethodField = document.getElementById('paymentMethod');
+    const cardDetails = document.getElementById('cardDetails');
+    const upiAppDetails = document.getElementById('upiAppDetails');
+    const bankTransferDetails = document.getElementById('bankTransferDetails');
+    const placeOrderButton = document.getElementById('placeOrderButton');
 
-        function validateForm() {
-            let isValid = true;
-            const requiredFields = form.querySelectorAll('[required]');
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    showError(field, 'This field is required');
-                } else {
-                    clearError(field);
-                }
-            });
-
-            // Validate email format
-            const emailField = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (emailField.value && !emailRegex.test(emailField.value)) {
+    function validateForm() {
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
                 isValid = false;
-                showError(emailField, 'Please enter a valid email address');
-            }
-
-            // Validate phone number (simple check for digits only)
-            const phoneField = document.getElementById('phone');
-            const phoneRegex = /^\d+$/;
-            if (phoneField.value && !phoneRegex.test(phoneField.value)) {
-                isValid = false;
-                showError(phoneField, 'Please enter a valid phone number (digits only)');
-            }
-
-            // Validate PIN Code (assuming 6 digits for Indian PIN codes)
-            const pinCodeField = document.getElementById('pinCode');
-            const pinCodeRegex = /^\d{6}$/;
-            if (pinCodeField.value && !pinCodeRegex.test(pinCodeField.value)) {
-                isValid = false;
-                showError(pinCodeField, 'Please enter a valid 6-digit PIN code');
-            }
-
-            // Validate payment method specific fields
-            if (paymentMethodField.value === 'card') {
-                const cardNumberField = document.getElementById('cardNumber');
-                const expiryDateField = document.getElementById('expiryDate');
-                const cvvField = document.getElementById('cvv');
-
-                if (!/^\d{16}$/.test(cardNumberField.value.replace(/\s/g, ''))) {
-                    isValid = false;
-                    showError(cardNumberField, 'Please enter a valid 16-digit card number');
-                }
-
-                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDateField.value)) {
-                    isValid = false;
-                    showError(expiryDateField, 'Please enter a valid expiry date (MM/YY)');
-                }
-
-                if (!/^\d{3}$/.test(cvvField.value)) {
-                    isValid = false;
-                    showError(cvvField, 'Please enter a valid 3-digit CVV');
-                }
-            } else if (paymentMethodField.value === 'upi_app') {
-                const selectedUpiApp = document.getElementById('selectedUpiApp');
-                if (!selectedUpiApp.value) {
-                    isValid = false;
-                    showError(upiAppDetails, 'Please select a UPI app');
-                }
-            }
-
-            placeOrderButton.disabled = !isValid;
-            return isValid;
-        }
-
-        function showError(field, message) {
-            clearError(field);
-            const errorElement = document.createElement('div');
-            errorElement.className = 'error';
-            errorElement.textContent = message;
-            field.parentNode.appendChild(errorElement);
-            field.classList.add('error-input');
-        }
-
-        function clearError(field) {
-            const errorElement = field.parentNode.querySelector('.error');
-            if (errorElement) {
-                errorElement.remove();
-            }
-            field.classList.remove('error-input');
-        }
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (validateForm()) {
-                alert('Order placed successfully!');
-                // Here you would typically send the form data to your server or payment gateway
+                showError(field, 'This field is required');
+            } else {
+                clearError(field);
             }
         });
 
-        // Validate form on input change
-        form.addEventListener('input', validateForm);
+        // Validate email format
+        const emailField = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailField.value && !emailRegex.test(emailField.value)) {
+            isValid = false;
+            showError(emailField, 'Please enter a valid email address');
+        }
 
-        // Toggle shipping address fields based on checkbox
-        document.getElementById('sameAsBilling').addEventListener('change', function () {
-            console.log(this.checked ? 'Using billing address as shipping address' : 'Show shipping address fields');
+        // Validate phone number (simple check for digits only)
+        const phoneField = document.getElementById('phone');
+        const phoneRegex = /^\d+$/;
+        if (phoneField.value && !phoneRegex.test(phoneField.value)) {
+            isValid = false;
+            showError(phoneField, 'Please enter a valid phone number (digits only)');
+        }
+
+        // Validate PIN Code (assuming 6 digits for Indian PIN codes)
+        const pinCodeField = document.getElementById('pinCode');
+        const pinCodeRegex = /^\d{6}$/;
+        if (pinCodeField.value && !pinCodeRegex.test(pinCodeField.value)) {
+            isValid = false;
+            showError(pinCodeField, 'Please enter a valid 6-digit PIN code');
+        }
+
+        // Validate payment method specific fields
+        if (paymentMethodField.value === 'card') {
+            const cardNumberField = document.getElementById('cardNumber');
+            const expiryDateField = document.getElementById('expiryDate');
+            const cvvField = document.getElementById('cvv');
+
+            if (!/^\d{16}$/.test(cardNumberField.value.replace(/\s/g, ''))) {
+                isValid = false;
+                showError(cardNumberField, 'Please enter a valid 16-digit card number');
+            }
+
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDateField.value)) {
+                isValid = false;
+                showError(expiryDateField, 'Please enter a valid expiry date (MM/YY)');
+            }
+
+            if (!/^\d{3}$/.test(cvvField.value)) {
+                isValid = false;
+                showError(cvvField, 'Please enter a valid 3-digit CVV');
+            }
+        } else if (paymentMethodField.value === 'upi_app') {
+            const selectedUpiApp = document.getElementById('selectedUpiApp');
+            if (!selectedUpiApp.value) {
+                isValid = false;
+                showError(upiAppDetails, 'Please select a UPI app');
+            }
+        }
+
+        placeOrderButton.disabled = !isValid;
+        return isValid;
+    }
+
+    function showError(field, message) {
+        clearError(field);
+        const errorElement = document.createElement('div');
+        errorElement.className = 'error';
+        errorElement.textContent = message;
+        field.parentNode.appendChild(errorElement);
+        field.classList.add('error-input');
+    }
+
+    function clearError(field) {
+        const errorElement = field.parentNode.querySelector('.error');
+        if (errorElement) {
+            errorElement.remove();
+        }
+        field.classList.remove('error-input');
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateForm()) {
+            alert('Order placed successfully!');
+            // Here you would typically send the form data to your server or payment gateway
+        }
+    });
+
+    // Validate form on input change
+    form.addEventListener('input', validateForm);
+
+    // Toggle shipping address fields based on checkbox
+    document.getElementById('sameAsBilling').addEventListener('change', function () {
+        console.log(this.checked ? 'Using billing address as shipping address' : 'Show shipping address fields');
+        validateForm();
+    });
+
+    // Dynamically update payment method fields
+    paymentMethodField.addEventListener('change', function () {
+        cardDetails.style.display = 'none';
+        upiAppDetails.style.display = 'none';
+        bankTransferDetails.style.display = 'none';
+
+        if (this.value === 'card') {
+            cardDetails.style.display = 'block';
+        } else if (this.value === 'upi_app') {
+            upiAppDetails.style.display = 'block';
+        } else if (this.value === 'bank_transfer') {
+            bankTransferDetails.style.display = 'block';
+        }
+
+        validateForm();
+    });
+
+    // UPI App selection
+    document.querySelectorAll('#upiAppLogos img').forEach(img => {
+        img.addEventListener('click', function () {
+            document.querySelectorAll('#upiAppLogos img').forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+            document.getElementById('selectedUpiApp').value = this.getAttribute('data-app');
             validateForm();
         });
-
-        // Dynamically update payment method fields
-        paymentMethodField.addEventListener('change', function () {
-            cardDetails.style.display = 'none';
-            upiAppDetails.style.display = 'none';
-            bankTransferDetails.style.display = 'none';
-
-            if (this.value === 'card') {
-                cardDetails.style.display = 'block';
-            } else if (this.value === 'upi_app') {
-                upiAppDetails.style.display = 'block';
-            } else if (this.value === 'bank_transfer') {
-                bankTransferDetails.style.display = 'block';
-            }
-
-            validateForm();
-        });
-
-        // UPI App selection
-        document.querySelectorAll('#upiAppLogos img').forEach(img => {
-            img.addEventListener('click', function () {
-                document.querySelectorAll('#upiAppLogos img').forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-                document.getElementById('selectedUpiApp').value = this.getAttribute('data-app');
-                validateForm();
-            });
-        });
-    </script>
-</body>
-
-</html>
+    });
+</script>
+{%endblock%}

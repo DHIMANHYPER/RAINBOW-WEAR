@@ -1,13 +1,10 @@
-<html>
+<!-- <html>
 
 <head>
-    <!-- <base href="https://example.com/product/3"> -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abstract Breeze Dress - ModernWear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='prod.css')}}">
+    
 </head>
 
 <body>
@@ -22,7 +19,15 @@
             </ul>
         </nav>
         <button class="menu-toggle">☰</button>
-    </header>
+    </header> -->
+    {%extends "base.html"%}
+    {%block head%}
+    <title>Abstract Breeze Dress - ModernWear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='prod.css')}}">
+    {%endblock%}
+    {%block content%}
     <main>
         <div class="product-details">
             <div class="product-images">
@@ -170,6 +175,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+  {%endblock%}
