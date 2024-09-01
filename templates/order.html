@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <!-- <base href="https://rainbowwear.com/order-confirmation"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Rainbow Wear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='orders.css')}}">
+
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="site-name">Rainbow Wear</h1>
+    </header>
+    <main>
+        <div class="confirmation-container">
+            <h1>Order Confirmation</h1>
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                Your order has been successfully placed and payment received!
+            </div>
+
+            <div class="order-details">
+                <h2>Order Details</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Order Number:</span>
+                    <span class="detail-value">#RW12345</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Order Date:</span>
+                    <span class="detail-value">May 15, 2023</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Estimated Delivery:</span>
+                    <span class="detail-value">May 20, 2023 - May 25, 2023</span>
+                </div>
+            </div>
+
+            <div class="shipping-details">
+                <h2>Shipping Details</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Name:</span>
+                    <span class="detail-value">John Doe</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Address:</span>
+                    <span class="detail-value">
+                        123 Rainbow Street<br>
+                        Apartment 4B<br>
+                        Colorful City, CO 12345
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Phone:</span>
+                    <span class="detail-value">+1 (555) 123-4567</span>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <h2>Payment Details</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Method:</span>
+                    <span class="detail-value">Debit/Credit Card</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Card Number:</span>
+                    <span class="detail-value">**** **** **** 1234</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Subtotal:</span>
+                    <span class="detail-value">$89.99</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Shipping:</span>
+                    <span class="detail-value">$5.99</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Tax:</span>
+                    <span class="detail-value">$7.20</span>
+                </div>
+                <div class="detail-row total">
+                    <span class="detail-label">Total:</span>
+                    <span class="detail-value">$103.18</span>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <a href="/track-order" class="action-button">Track Order</a>
+                <a href="/shop" class="action-button">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Update order number with a random number
+            const orderNumber = document.querySelector('.order-details .detail-row:first-child .detail-value');
+            orderNumber.textContent = '#RW' + Math.floor(10000 + Math.random() * 90000);
+
+            // Update order date to current date
+            const orderDate = document.querySelector('.order-details .detail-row:nth-child(2) .detail-value');
+            const currentDate = new Date();
+            orderDate.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+            // Update estimated delivery date (5-10 days from now)
+            const estimatedDelivery = document.querySelector('.order-details .detail-row:nth-child(3) .detail-value');
+            const deliveryStartDate = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+            const deliveryEndDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000);
+            estimatedDelivery.textContent = `${deliveryStartDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} - ${deliveryEndDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+        });
+    </script>
+</body>
+
+</html>

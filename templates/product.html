@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <!-- <base href="https://example.com/product/3"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Breeze Dress - ModernWear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='prod.css')}}">
+</head>
+
+<body>
+    <header>
+        <h1 class="site-name">ModernWear</h1>
+        <nav>
+            <ul>
+                <li><a href="/new-arrivals">New Arrivals</a></li>
+                <li><a href="/men">Men</a></li>
+                <li><a href="/women">Women</a></li>
+                <li><a href="/sale">Sale</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle">☰</button>
+    </header>
+    <main>
+        <div class="product-details">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="https://example.com/images/flowy-dress-dark-full.jpg"
+                        alt="Full view of the Abstract Breeze Dress on a model against a dark background" width="600"
+                        height="800">
+                </div>
+                <div class="thumbnail-images">
+                    <div class="thumbnail active">
+                        <img src="https://example.com/images/flowy-dress-dark-full.jpg"
+                            alt="Thumbnail of full dress view" width="80" height="80">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://example.com/images/flowy-dress-dark-detail.jpg"
+                            alt="Thumbnail of dress fabric detail" width="80" height="80">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://example.com/images/flowy-dress-dark-back.jpg"
+                            alt="Thumbnail of dress back view" width="80" height="80">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://example.com/images/flowy-dress-dark-styled.jpg"
+                            alt="Thumbnail of dress styled with accessories" width="80" height="80">
+                    </div>
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 class="product-title">Abstract Breeze Dress</h1>
+                <p class="product-price">$49.99</p>
+                <p class="product-description">Embrace summer elegance with our Abstract Breeze Dress. This flowy
+                    masterpiece features a captivating abstract print that dances with every movement. Crafted from
+                    lightweight, breathable fabric, it's perfect for warm days and balmy nights. The versatile design
+                    transitions effortlessly from day to evening wear, making it a must-have addition to your modern
+                    wardrobe.</p>
+                <div class="size-selection">
+                    <h3>Select Size:</h3>
+                    <div class="size-buttons">
+                        <button class="size-button">XS</button>
+                        <button class="size-button">S</button>
+                        <button class="size-button active">M</button>
+                        <button class="size-button">L</button>
+                        <button class="size-button">XL</button>
+                    </div>
+                </div>
+                <div class="quantity-selection">
+                    <h3>Quantity:</h3>
+                    <input type="number" class="quantity-input" value="1" min="1" max="10">
+                </div>
+                <button class="buy-now">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 ModernWear. All rights reserved.</p>
+    </footer>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('show');
+            menuToggle.textContent = navUl.classList.contains('show') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('nav') && !event.target.closest('.menu-toggle')) {
+                navUl.classList.remove('show');
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        // Thumbnail image selection
+        const mainImage = document.querySelector('.main-image img');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                mainImage.src = thumbnail.querySelector('img').src;
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnail.classList.add('active');
+            });
+        });
+
+        // Size selection
+        const sizeButtons = document.querySelectorAll('.size-button');
+
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sizeButtons.forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Quantity input validation
+        const quantityInput = document.querySelector('.quantity-input');
+
+        quantityInput.addEventListener('change', () => {
+            let value = parseInt(quantityInput.value);
+            if (isNaN(value) || value < 1) {
+                quantityInput.value = 1;
+            } else if (value > 10) {
+                quantityInput.value = 10;
+            }
+        });
+
+        // Buy Now button
+        const buyNowButton = document.querySelector('.buy-now');
+
+        buyNowButton.addEventListener('click', () => {
+            const size = document.querySelector('.size-button.active').textContent;
+            const quantity = quantityInput.value;
+            alert(`Proceeding to checkout:\nProduct: Abstract Breeze Dress\nSize: ${size}\nQuantity: ${quantity}`);
+        });
+
+        // Add to Cart button
+        const addToCartButton = document.querySelector('.add-to-cart');
+
+        addToCartButton.addEventListener('click', () => {
+            const size = document.querySelector('.size-button.active').textContent;
+            const quantity = quantityInput.value;
+            alert(`Added to cart:\nProduct: Abstract Breeze Dress\nSize: ${size}\nQuantity: ${quantity}`);
+
+            // Visual feedback
+            addToCartButton.textContent = 'Added to Cart!';
+            addToCartButton.style.backgroundColor = 'var(--secondary-color)';
+            addToCartButton.style.color = 'var(--background-color)';
+
+            setTimeout(() => {
+                addToCartButton.textContent = 'Add to Cart';
+                addToCartButton.style.backgroundColor = '';
+                addToCartButton.style.color = '';
+            }, 2000);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
