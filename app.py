@@ -16,6 +16,7 @@ def checkout():
 @app.route("/order")
 def order():
     return render_template("order.html")
+
 @app.route("/product")
 def product():
     return render_template("product.html")
