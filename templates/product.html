@@ -22,47 +22,44 @@
     </header> -->
     {%extends "base.html"%}
     {%block head%}
-    <title>Abstract Breeze Dress - ModernWear</title>
+    <title>KATAN SILK SAREE - Rainbow Wear</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='prod.css')}}">
     {%endblock%}
     {%block content%}
+  
     <main>
         <div class="product-details">
             <div class="product-images">
                 <div class="main-image">
-                    <img src="https://example.com/images/flowy-dress-dark-full.jpg"
+                    <img src="{{item['image']}}"
                         alt="Full view of the Abstract Breeze Dress on a model against a dark background" width="600"
                         height="800">
                 </div>
                 <div class="thumbnail-images">
                     <div class="thumbnail active">
-                        <img src="https://example.com/images/flowy-dress-dark-full.jpg"
+                        <img src="{{item['image1']}}"
                             alt="Thumbnail of full dress view" width="80" height="80">
                     </div>
                     <div class="thumbnail">
-                        <img src="https://example.com/images/flowy-dress-dark-detail.jpg"
+                        <img src="{{item['image2']}}"
                             alt="Thumbnail of dress fabric detail" width="80" height="80">
                     </div>
                     <div class="thumbnail">
-                        <img src="https://example.com/images/flowy-dress-dark-back.jpg"
+                        <img src="{{item['image3']}}"
                             alt="Thumbnail of dress back view" width="80" height="80">
                     </div>
                     <div class="thumbnail">
-                        <img src="https://example.com/images/flowy-dress-dark-styled.jpg"
+                        <img src="{{item['image']}}"
                             alt="Thumbnail of dress styled with accessories" width="80" height="80">
                     </div>
                 </div>
             </div>
             <div class="product-info">
-                <h1 class="product-title">Abstract Breeze Dress</h1>
-                <p class="product-price">$49.99</p>
-                <p class="product-description">Embrace summer elegance with our Abstract Breeze Dress. This flowy
-                    masterpiece features a captivating abstract print that dances with every movement. Crafted from
-                    lightweight, breathable fabric, it's perfect for warm days and balmy nights. The versatile design
-                    transitions effortlessly from day to evening wear, making it a must-have addition to your modern
-                    wardrobe.</p>
+                <h1 class="product-title">KATAN SILK SAREE</h1>
+                <p class="product-price"> &#x20B9; 1499</p>
+                <p class="product-description">Pure Katan Silk   Mayura Border   Super Soft & Premium Quality Gurranted  Party Wear & Gloshy Collection   All Total Dual Tone Colour Set   🍁With Banarasi Border Blouse Piece </p>
                 <div class="size-selection">
                     <h3>Select Size:</h3>
                     <div class="size-buttons">

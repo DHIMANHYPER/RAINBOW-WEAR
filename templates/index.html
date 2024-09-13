@@ -14,22 +14,26 @@
 
     <main>
         <div class="product-grid">
+            {%for item in data %}
+
+
             <div class="product-card" data-product-id="1">
-                <a href="/product">
+                <a href="/product/{{ loop.index0 }}">
                     <div class="product-image">
                         <button class="share-button"><i class="fas fa-share-alt"></i></button>
                         <button class="cart-button"><i class="fas fa-shopping-cart"></i></button>
-                        <img src="https://example.com/images/minimalist-tshirt-dark.jpg"
+                        <img src="{{item['image']}}"
                             alt="White minimalist t-shirt with subtle geometric pattern on dark background" width="300"
                             height="300">
                     </div>
                     <div class="product-info">
-                        <h2 class="product-title">Minimalist Geo Tee</h2>
-                        <p class="product-price">$29.99</p>
+                        <h2 class="product-title">{{item["name"]}}</h2>
+                        <p class="product-price">&#x20B9; {{item["price"]}}</p>
                         <a href="/checkout"><button class="buy-now">Buy Now</button></a>
                     </div>
                 </a>
             </div>
+            {%endfor%}
             <div class="product-card" data-product-id="2">
                 <div class="product-image">
                     <button class="share-button"><i class="fas fa-share-alt"></i></button>
@@ -56,6 +60,7 @@
                     <button class="buy-now">Buy Now</button>
                 </div>
             </div>
+            
             <div class="product-card" data-product-id="4">
                 <div class="product-image">
                     <button class="share-button"><i class="fas fa-share-alt"></i></button>

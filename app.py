@@ -1,13 +1,14 @@
 from flask import Flask, render_template
-
+from api import db, itemdata
 app = Flask(__name__)
 
-list = ["lol", "arup", 'a']
+
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", data=list)
+    datas = db()
+    return render_template("index.html", data = datas)
 
 @app.route("/checkout")
 def checkout():
@@ -17,9 +18,10 @@ def checkout():
 def order():
     return render_template("order.html")
 
-@app.route("/product")
-def product():
-    return render_template("product.html")
+@app.route("/product/<index>")
+def product(index):
+    idata = itemdata(int(index))
+    return render_template("product.html", item = idata)
 
 
 if __name__ == "__main__":
