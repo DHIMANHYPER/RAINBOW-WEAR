@@ -23,7 +23,11 @@ def product(index):
     idata = itemdata(int(index))
     return render_template("product.html", item = idata)
 
+@app.route("/admin")
+def adm():
+   
 
+    return render_template("admin.html")
 if __name__ == "__main__":
     app.run(debug=True)
 

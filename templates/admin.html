@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Product Form</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            animation: changeColor 3s infinite;
+        }
+
+        form {
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        label {
+            font-size: 16px;
+            animation: changeColor 3s infinite;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea,
+        input[type="file"] {
+            background-color: #3b3b3b;
+            color: #ffffff;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            animation: changeColor 3s infinite;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #888;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .image-preview {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #555;
+            padding: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .out-of-stock {
+            color: red;
+            font-weight: bold;
+        }
+
+        @keyframes changeColor {
+            0% {
+                color: rgb(255, 182, 193);
+            }
+
+            25% {
+                color: rgb(173, 216, 230);
+            }
+
+            50% {
+                color: rgb(144, 238, 144);
+            }
+
+            75% {
+                color: rgb(240, 230, 140);
+            }
+
+            100% {
+                color: rgb(255, 182, 193);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Clothing Product Form</h2>
+    <form action="/submit-product" method="POST" enctype="multipart/form-data">
+        <!-- Product Name -->
+        <label for="product-name">Product Name:</label><br>
+        <input type="text" id="product-name" name="product_name" required><br><br>
+
+        <!-- Category -->
+        <label for="category">Category:</label><br>
+        <select id="category" name="category" required>
+            <option value="saree">Saree</option>
+            <option value="blouse">Blouse</option>
+            <option value="kurti-set">Kurti Set</option>
+            <option value="panjabi">Panjabi</option>
+            <option value="bags">Bags</option>
+            <option value="nighty">Nighty</option>
+        </select><br><br>
+
+        <!-- Size (with None option) -->
+        <label for="size">Size:</label><br>
+        <select id="size" name="size" required>
+            <option value="none">None</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            <option value="3XL">3XL</option>
+            <option value="4XL">4XL</option>
+            <option value="5XL">5XL</option>
+            <option value="6XL">6XL</option>
+        </select><br><br>
+
+        <!-- Colour -->
+        <label for="colour">Colour:</label><br>
+        <input type="text" id="product-name" name="product_name" required><br><br>
+
+        <!-- Price -->
+        <label for="price">Price (₹):</label><br>
+        <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+        <!-- Discount (with None option) -->
+        <label for="discount">Discount:</label><br>
+        <input type="text" id="product-name" name="product_name" required><br><br>
+
+        <!-- Quantity (with Out of Stock check) -->
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity" min="0" required><br>
+        <p id="stock-status" class="out-of-stock" style="display: none;">Out of Stock</p><br>
+
+        <!-- Shipping Charge -->
+        <label for="shipping-charge">Shipping Charge (₹):</label><br>
+        <input type="number" id="shipping-charge" name="shipping_charge" step="0.01"><br><br>
+
+        <!-- Product Images -->
+        <label for="product-images">Product Images:</label><br>
+        <input type="file" id="product-images" name="product_images[]" accept="image/*" multiple required><br><br>
+
+        <!-- Image Preview -->
+        <div id="image-preview" class="image-preview"></div><br>
+
+        <!-- Description -->
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('quantity').addEventListener('input', function (event) {
+            var quantity = event.target.value;
+            var stockStatus = document.getElementById('stock-status');
+            if (quantity == 0) {
+                stockStatus.style.display = 'block';
+            } else {
+                stockStatus.style.display = 'none';
+            }
+        });
+
+        document.getElementById('product-images').addEventListener('change', function (event) {
+            var preview = document.getElementById('image-preview');
+            preview.innerHTML = ''; // Clear any previous previews
+            for (var i = 0; i < event.target.files.length; i++) {
+                var file = event.target.files[i];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+
+</html>
