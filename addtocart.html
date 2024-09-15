@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <style>
+        .product { margin-bottom: 20px; }
+        .cart { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>RAINBOW WEAR</h1>
+
+    <div class="product">
+        <h2>Product 1</h2>
+        <p>Price:&#x20B9; 25</p>
+        <button onclick="addToCart('product1', 25)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h2>Product 2</h2>
+        <p>Price:&#x20B9; 40</p>
+        <button onclick="addToCart('product2', 40)">Add to Cart</button>
+    </div>
+
+    <div class="cart">
+        <h2>Cart</h2>
+        <ul id="cartItems">
+            <!-- Cart items will be listed here -->
+        </ul>
+        <p id="totalPrice">Total Price:&#x20B9; 0</p>
+    </div>
+
+    <script>
+        const cart = [];
+
+        function addToCart(productId, price) {
+            // Add product to cart array
+            cart.push({ productId, price });
+
+            // Update cart display
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            // Clear current cart display
+            cartItems.innerHTML = '';
+            
+            let totalPrice = 0;
+
+            // Display cart items
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Product ID: ${item.productId}, Price: $${item.price}`;
+                cartItems.appendChild(listItem);
+                totalPrice += item.price;
+            });
+
+            // Update total price
+            totalPriceElement.textContent = `Total Price: $${totalPrice}`;
+        }
+    </script>
+</body>
+</html>
