@@ -139,6 +139,10 @@ nav ul li a:hover {
     position: relative;
     cursor: pointer;
 }
+.product-card a{
+    text-decoration: none;
+}
+
 
 .product-card:hover {
     transform: translateY(-10px);
