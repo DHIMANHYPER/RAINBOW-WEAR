@@ -38,15 +38,11 @@
                 <div class="size-selection">
                     <h3>Select Size:</h3>
                     <div class="size-buttons">
-                        <button class="size-button">S</button>
-                        <button class="size-button">M</button>
-                        <button class="size-button active">L</button>
-                        <button class="size-button">XL</button>
-                        <button class="size-button">XXL</button>
-                        <button class="size-button">3XL</button>
-                        <button class="size-button">4XL</button>
-                        <button class="size-button">5XL</button>
-                        <button class="size-button">6XL</button>
+                        
+                        {%for s in item["size"]%}
+                        <button class="size-button">{{s}}</button>
+                        {%endfor%}
+                        
 
                     </div>
                 </div>
