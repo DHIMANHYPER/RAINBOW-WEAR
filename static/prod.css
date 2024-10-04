@@ -222,6 +222,7 @@ main {
 .size-buttons {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .size-button {

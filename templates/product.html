@@ -1,25 +1,4 @@
-<!-- <html>
 
-<head>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-</head>
-
-<body>
-    <header>
-        <h1 class="site-name">ModernWear</h1>
-        <nav>
-            <ul>
-                <li><a href="/new-arrivals">New Arrivals</a></li>
-                <li><a href="/men">Men</a></li>
-                <li><a href="/women">Women</a></li>
-                <li><a href="/sale">Sale</a></li>
-            </ul>
-        </nav>
-        <button class="menu-toggle">☰</button>
-    </header> -->
     {%extends "base.html"%}
     {%block head%}
     <title>KATAN SILK SAREE - Rainbow FASHION</title>
@@ -30,30 +9,26 @@
     {%block content%}
   
     <main>
+        
         <div class="product-details">
             <div class="product-images">
                 <div class="main-image">
-                    <img src="{{item['image']}}"
+                    <img src="{{item['images'][0]}}"
                         alt="Full view of the Abstract Breeze Dress on a model against a dark background" width="600"
                         height="800">
                 </div>
+                
+                
                 <div class="thumbnail-images">
-                    <div class="thumbnail active">
-                        <img src="{{item['image1']}}"
-                            alt="Thumbnail of full dress view" width="80" height="80">
-                    </div>
-                    <div class="thumbnail">
-                        <img src="{{item['image2']}}"
-                            alt="Thumbnail of dress fabric detail" width="80" height="80">
-                    </div>
-                    <div class="thumbnail">
-                        <img src="{{item['image3']}}"
-                            alt="Thumbnail of dress back view" width="80" height="80">
-                    </div>
-                    <div class="thumbnail">
-                        <img src="{{item['image']}}"
-                            alt="Thumbnail of dress styled with accessories" width="80" height="80">
-                    </div>
+                    {%for img in item['images']%}
+                
+                <div class="thumbnail active">
+                    <img src="{{img}}"
+                        alt="Thumbnail of full dress view" width="80" height="80">
+                </div>
+                {%endfor%}
+                    
+                    
                 </div>
             </div>
             <div class="product-info">
@@ -63,15 +38,11 @@
                 <div class="size-selection">
                     <h3>Select Size:</h3>
                     <div class="size-buttons">
-                        <button class="size-button">S</button>
-                        <button class="size-button">M</button>
-                        <button class="size-button active">L</button>
-                        <button class="size-button">XL</button>
-                        <button class="size-button">XXL</button>
-                        <button class="size-button">3XL</button>
-                        <button class="size-button">4XL</button>
-                        <button class="size-button">5XL</button>
-                        <button class="size-button">6XL</button>
+                        
+                        {%for s in item["size"]%}
+                        <button class="size-button">{{s}}</button>
+                        {%endfor%}
+                        
 
                     </div>
                 </div>
@@ -80,7 +51,7 @@
                     <input type="number" class="quantity-input" value="1" min="1" max="10">
                 </div>
                 <a href="/checkout"><button class="buy-now">Buy Now</button></a>
-                <button class="add-to-cart">Add to Cart</button>
+                <!-- <button class="add-to-cart">Add to Cart</button> -->
                     
             </div>
         </div>
