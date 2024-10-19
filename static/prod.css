@@ -167,14 +167,20 @@ main {
 }
 
 .thumbnail {
-    width: 80px;
-    height: 80px;
+    
+    width:60px;
+    height: 60px;
     background-color: var(--surface-color);
     border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
     opacity: 0.7;
     transition: all 0.3s ease;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .thumbnail img {

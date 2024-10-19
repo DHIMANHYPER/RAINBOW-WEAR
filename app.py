@@ -25,9 +25,11 @@ def product(index):
 
 @app.route("/admin")
 def adm():
-   
-
     return render_template("admin.html")
+
+@app.route("/savetodb")
+def adm():
+    return "saved"
 if __name__ == "__main__":
     app.run(debug=True)
 
